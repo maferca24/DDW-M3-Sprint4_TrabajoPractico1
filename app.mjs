@@ -46,6 +46,10 @@ app.use((req, res) => {
 });
 
 // Iniciar el servidor
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+// app.listen(PORT, () => {
+//     console.log(`Servidor corriendo en http://localhost:${PORT}`);
+// });
+//Importante: Para levantar el servidor en render es necesario configurar el puerto http al que render va escuchar
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Servidor levantado en el puerto ${PORT}, desde el servidor de Render`);
 });
