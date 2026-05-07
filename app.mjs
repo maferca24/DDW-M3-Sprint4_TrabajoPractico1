@@ -3,32 +3,31 @@ import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
 import { connectDB } from './config/dbConfig.mjs';
 
-// Importación de rutas
+// Importación de rutas- API y Frontend
 import superHeroRoutes from './routes/superHeroesRoutes.mjs';
 import heroesroutefront from './routes/superHeroFront.mjs';
 
 const app = express();// Crear instancia de Express
 const PORT = process.env.PORT || 3000;// Definir el puerto para el servidor, usando una variable de entorno o el puerto 3000 por defecto
 
-// 1. Configuración del motor de plantillas y vistas
+//Configuración del motor de plantillas y vistas
 app.set("view engine", "ejs");// Configurar ejs como motor de plantillas
 app.set("views", path.resolve("./views")); //Especificar la carpeta donde se encuentran las vistas (plantillas ejs)
 
-// 2. Configuración de Layouts (Debe ir antes de las rutas) ,se configura express-ejs-layouts para usar un layout común en las vistas
+// Configuración de Layouts,se configura express-ejs-layouts para usar un layout común en las vistas
 app.use(expressLayouts);
-app.set('layout', 'layout'); // Busca views/layout.ejs- Indica que use layout.ejs por defecto para todas las vistas, 
-// a menos que se especifique lo contrario en la ruta correspondiente.
+app.set('layout', 'layout'); // Busca views/layout.ejs- Indica que use layout.ejs por defecto para todas las vistas
 
-// 3. Archivos estáticos y Middlewares
+// Archivos estáticos y Middlewares
 app.use(express.static(path.resolve("./public")));// Servir archivos estáticos desde la carpeta "public" (para CSS, JS, imágenes, etc.)
 app.use(express.json()); // Para procesar JSON en el cuerpo de las peticiones
-app.use(express.urlencoded({ extended: true })); // Útil si envías datos por formularios simples 
+app.use(express.urlencoded({ extended: true })); // Útil si envías datos por formularios simples ????
 
-// 4. Conexión a MongoDB
+// Conexión a MongoDB
 connectDB();
 
-// 5. Rutas
-// Página de inicio (Landing Page   )
+// Definimo Rutas
+// Página de inicio (Landing Page)
 app.get('/', (req, res) => {
     res.render('index', { 
         title: 'Página Principal' 
@@ -41,12 +40,12 @@ app.use('/api', superHeroRoutes);
 // Rutas del Dashboard (Frontend/Vistas)
 app.use("/dashboard", heroesroutefront);
 
-// 6. Manejo de errores 404 (Opcional pero recomendado)
+// Manejo de errores 404 (Página no encontrada)
 app.use((req, res) => {
     res.status(404).render('404', { title: 'Página no encontrada' });
 });
 
-// 7. Iniciar el servidor
+// Iniciar el servidor
 app.listen(PORT, () => {
     console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
