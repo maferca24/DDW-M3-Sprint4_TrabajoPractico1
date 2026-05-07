@@ -22,7 +22,7 @@ export async function getDashboardController(req, res) {
     const superheroes = await obtenerTodosLosSuperheroes();
     //vista a renderizar con los datos de los superheroes
     //console.log(superheroes);
-    res.render("dashboard", { superheroes, title: 'Dashboard de Superhéroes' });
+    res.render("dashboard", { superheroes, title: 'Dashboard de Superhéroes' });    
 }   
 
 

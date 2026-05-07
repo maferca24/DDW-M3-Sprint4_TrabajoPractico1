@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        <%= title %><!--El titulo se va a definir dinamicamente en cada vista, y se va a mostrar en el titulo del navegador-->
+        <%= typeof title !== 'undefined' ? title : 'Mi App de Superhéroes' %>
     </title>
 
     <link rel="stylesheet" href="/styles.css">
