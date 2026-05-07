@@ -1,46 +1,52 @@
 import express from 'express';
-import {connectDB} from './config/dbConfig.mjs';
+import path from 'path';
+import expressLayouts from 'express-ejs-layouts';
+import { connectDB } from './config/dbConfig.mjs';
+
+// Importación de rutas
 import superHeroRoutes from './routes/superHeroesRoutes.mjs';
-import heroesroutefront from './routes/superHeroFront.mjs'
+import heroesroutefront from './routes/superHeroFront.mjs';
 
-//Crear instancia de Express
-const app = express();
-//Definir el puerto para el servidor, usando una variable de entorno o el puerto 3000 por defecto
-const PORT = process.env.PORT||3000;
+const app = express();// Crear instancia de Express
+const PORT = process.env.PORT || 3000;// Definir el puerto para el servidor, usando una variable de entorno o el puerto 3000 por defecto
 
-//Configurar ejs como motor de plantillas
-app.set("view engine","ejs");
+// 1. Configuración del motor de plantillas y vistas
+app.set("view engine", "ejs");// Configurar ejs como motor de plantillas
 app.set("views", path.resolve("./views")); //Especificar la carpeta donde se encuentran las vistas (plantillas ejs)
 
-//Configurar express-ejs-layouts para usar un layout común en las vistas
-import expressLayouts from 'express-ejs-layouts';
+// 2. Configuración de Layouts (Debe ir antes de las rutas) ,se configura express-ejs-layouts para usar un layout común en las vistas
 app.use(expressLayouts);
-app.set('layout','layout'); //Especificar la ubicación del layout principal-Indica que use layout.ejs por defecto para todas las vistas, a menos que se especifique lo contrario en la ruta correspondiente.
+app.set('layout', 'layout'); // Busca views/layout.ejs- Indica que use layout.ejs por defecto para todas las vistas, 
+// a menos que se especifique lo contrario en la ruta correspondiente.
 
-//Servir archivos estáticos desde la carpeta "public" (para CSS, JS, imágenes, etc.)
-import path from 'path';
-app.use(express.static(path.resolve("./public")));
+// 3. Archivos estáticos y Middlewares
+app.use(express.static(path.resolve("./public")));// Servir archivos estáticos desde la carpeta "public" (para CSS, JS, imágenes, etc.)
+app.use(express.json()); // Para procesar JSON en el cuerpo de las peticiones
+app.use(express.urlencoded({ extended: true })); // Útil si envías datos por formularios simples 
 
-//Middleware para parsear JSON (Mid para que las solicitudes se conviertan a JSON automáticamente)
-app.use (express.json());
-
-
-
-//Conexión a MongoDB
+// 4. Conexión a MongoDB
 connectDB();
 
-//Configuración de rutas- Rutas backend para la api de superheroes
+// 5. Rutas
+// Página de inicio (Landing Page   )
+app.get('/', (req, res) => {
+    res.render('index', { 
+        title: 'Página Principal' 
+    });
+});
+
+// Rutas de la API (Backend)
 app.use('/api', superHeroRoutes);
 
-//ruta frontend/plantillas para el dashboard de heroes
+// Rutas del Dashboard (Frontend/Vistas)
 app.use("/dashboard", heroesroutefront);
 
-//Manejo de errores para rutas no encontradas
-// app.use((req,res)=>{
-//     res.status(404).send({mensaje:"Ruta no encontrada"});
-// });
+// 6. Manejo de errores 404 (Opcional pero recomendado)
+app.use((req, res) => {
+    res.status(404).render('404', { title: 'Página no encontrada' });
+});
 
-//Iniciar el servidor
-app.listen(PORT,()=>{
-    console.log(`Servidor escuchando en el puerto ${PORT}`);
+// 7. Iniciar el servidor
+app.listen(PORT, () => {
+    console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
