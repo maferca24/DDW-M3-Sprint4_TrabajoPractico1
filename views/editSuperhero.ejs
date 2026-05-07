@@ -64,7 +64,10 @@
           type="text"
           name="aliados"
           value="<%= heroe.aliados.join(', ') %>"
-        /> </label
+        /> 
+        <!--Ejemplo de validacion para aliados y enemigos- PROBAR        
+value="<%= (heroe.aliados && heroe.aliados.length > 0) ? heroe.aliados.join(', ') : '' %>"-->
+        </label
       ><br />
       <label
         >Enemigos (separados por coma):

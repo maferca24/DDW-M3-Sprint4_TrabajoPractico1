@@ -7,7 +7,7 @@ router.get("/", getDashboardController);
 
 //Ruta para mostrar el formulario de creación de un nuevo heroe
 router.get("/nuevo", (req, res) => {
-    res.render("addSuperhero");
+    res.render("addSuperhero", { title: 'Agregar Superhéroe' });// Renderiza la vista addSuperhero.ejs para mostrar el formulario de creación de un nuevo superhéroe
 });
 //ruta para mostrar el formulario de edición de un heroe existente, obteniendo los datos del heroe desde la API
 router.get("/modificar/:id", async (req, res) => {
@@ -23,7 +23,7 @@ router.get("/modificar/:id", async (req, res) => {
     else{
     //console.log("Datos del héroe a renderizar en la vista:", heroe);
 
-      res.render("editSuperhero", { heroe });
+      res.render("editSuperhero", { heroe, title: 'Editar Superhéroe' });
 
     }
 }); 
