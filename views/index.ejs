@@ -1,11 +1,40 @@
-//landing page o página de inicio
+<div style="text-align: center; padding: 50px 20px; font-family: sans-serif;">
+    <h1 style="font-size: 2.5rem; color: #2c3e50; margin-bottom: 20px;">
+        <%= title %>
+    </h1>
+
+    <p style="font-size: 1.2rem; color: #7f8c8d; max-width: 600px; margin: 0 auto 30px;">
+        Esta es la página de inicio de mi sitio web. 
+        Aquí puedes gestionar toda la información de tus superhéroes.
+    </p>
+
+    <div style="margin-bottom: 30px;">
+        <img src="https://img.freepik.com/vector-premium/grupo-superheroes-disfrazados-listos-luchar_10308-490.jpg" 
+             alt="Superhéroes" 
+             style="width: 100%; max-width: 500px; border-radius: 15px; shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    </div>
+
+    <button onclick="location.href='/dashboard'" 
+            style="padding: 15px 30px; 
+                   font-size: 1.1rem; 
+                   background-color: #3498db; 
+                   color: white; 
+                   border: none; 
+                   border-radius: 5px; 
+                   cursor: pointer; 
+                   font-weight: bold;">
+        Ir al Dashboard
+    </button>
+</div>
+
+<!-- //landing page o página de inicio
 <% layout('layout') %><!--Extiendo el layout base para esta vista-->
-<h1>Bienvenido a mi sitio web</h1>
+<!-- <h1>Bienvenido a mi sitio web</h1>
 
 <p>Esta es la página de inicio de mi sitio web. Aquí puedes encontrar información sobre mí y mis proyectos.</p>
 
 //imagen de superheroes
-<button onclick="location.href='/dashboard'">Ir al Dashboard</button>
+<button onclick="location.href='/dashboard'">Ir al Dashboard</button> -->
 
 
 

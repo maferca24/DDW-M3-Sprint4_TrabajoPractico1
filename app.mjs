@@ -21,7 +21,7 @@ app.set('layout', 'layout'); // Busca views/layout.ejs- Indica que use layout.ej
 // Archivos estáticos y Middlewares
 app.use(express.static(path.resolve("./public")));// Servir archivos estáticos desde la carpeta "public" (para CSS, JS, imágenes, etc.)
 app.use(express.json()); // Para procesar JSON en el cuerpo de las peticiones
-app.use(express.urlencoded({ extended: true })); // Útil si envías datos por formularios simples ????
+//app.use(express.urlencoded({ extended: true })); // Útil si envías datos por formularios simples ????
 
 // Conexión a MongoDB
 connectDB();
@@ -47,5 +47,5 @@ app.use((req, res) => {
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
