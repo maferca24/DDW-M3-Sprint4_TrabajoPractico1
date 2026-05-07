@@ -111,7 +111,7 @@
             enemigos: splitCSV(form.enemigos.value),
             creador: form.creador.value,
           };
-          const res = await fetch("http://localhost:3000/api/heroes/id/<%= heroe._id %>", {
+          const res = await fetch("/api/heroes/id/<%= heroe._id %>", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body),
