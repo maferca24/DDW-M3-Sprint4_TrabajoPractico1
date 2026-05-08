@@ -30,7 +30,7 @@ connectDB();
 // Página de inicio (Landing Page)
 app.get('/', (req, res) => {
     res.render('index', { 
-        title: 'Página Principal' //paso el titulo a la vista index.ejs para que se muestre en el navegador
+        title: 'Inicio' //paso el titulo a la vista index.ejs para que se muestre en el navegador
     });
 });
 
