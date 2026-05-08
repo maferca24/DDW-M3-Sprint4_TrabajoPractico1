@@ -11,32 +11,23 @@ router.get("/nuevo", (req, res) => {
 });
 //ruta para mostrar el formulario de edición de un heroe existente, obteniendo los datos del heroe desde la API
 router.get("/modificar/:id", async (req, res) => {
-
-    //console.log("ID del héroe a modificar:", req.params.id);
+    console.log("ID del héroe a modificar:", req.params.id);
     const respuesta = await fetch(
-    `${req.protocol}://${req.get("host")}/api/heroes/${req.params.id}`//`http://localhost:3000/api/heroes/${req.params.id}`,    
-    //`https://ddw-m3-sprint4-trabajopractico1.onrender.com/api/heroes/${req.params.id}`,
-);
-//Consejo:
-// Backend → usar rutas dinámicas //${req.protocol}://${req.get("host")}
-//Frontend → usar rutas relativas //fetch('/api/heroes')
-
-if (!respuesta.ok) {
-    return res.status(404).send("Error al obtener el héroe");
-}
-
-const heroe = await respuesta.json();
-
-    if (!heroe) {
+        `http://localhost:3000/api/heroes/${req.params.id}`,
+        //`https://ddw-m3-sprint4-trabajopractico1.onrender.com/api/heroes/${req.params.id}`,
+    );
+    const heroe = await respuesta.json();
+    //console.log("Datos del héroe obtenido de la API:", heroe);
+    if (!heroe){
         return res.status(404).send("Superhéroe no encontrado en la API");
     }
+    else{
+    //console.log("Datos del héroe a renderizar en la vista:", heroe);
 
-    res.render("editSuperhero", {
-        heroe,
-        title: 'Editar Superhéroe'
-    });
+      res.render("editSuperhero", { heroe, title: 'Editar Superhéroe' });
 
-});
+    }
+}); 
 
 export default router;
 
