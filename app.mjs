@@ -1,7 +1,7 @@
-import express from 'express';
-import path from 'path';
-import expressLayouts from 'express-ejs-layouts';
-import { connectDB } from './config/dbConfig.mjs';
+import express from 'express';// Importar el framework Express para crear el servidor web
+import path from 'path';// Importar el módulo 'path' para manejar rutas de archivos y directorios
+import expressLayouts from 'express-ejs-layouts';// Importar el middleware 'express-ejs-layouts' para usar layouts con EJS
+import { connectDB } from './config/dbConfig.mjs';// Importar la función 'connectDB' para conectar a la base de datos MongoDB
 
 // Importación de rutas- API y Frontend
 import superHeroRoutes from './routes/superHeroesRoutes.mjs';
@@ -50,6 +50,6 @@ app.use((req, res) => {
 //     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 // });
 //Importante: Para levantar el servidor en render es necesario configurar el puerto http al que render va escuchar
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, '0.0.0.0', () => {//
     console.log(`Servidor levantado en el puerto ${PORT}, desde el servidor de Render`);
 });

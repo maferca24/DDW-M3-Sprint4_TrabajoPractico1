@@ -1,6 +1,6 @@
 //IRepository.mjs
-//Establece una interfaz que define los médtodos CRUD estándar y sirmve como contrao para 
-//asegurar que caulquier clase que implemente la interfaz cuente con estos métodos
+//Establece una interfaz que define los métodos CRUD estándar y sirve para 
+//asegurar que cualquier clase que implemente la interfaz cuente con estos métodos
 
 class IRepository {
     obtenerTodos() {
