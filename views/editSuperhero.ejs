@@ -4,9 +4,9 @@
   <div class="div-container">
     <form id="editForm">
       <label>Nombre de superhéroe:
-        <input type="text" name="nombreSuperHeroe" value="<%= heroe.nombreSuperHeroe %>" required /> </label><br />
+        <input type="text" name="nombreSuperHeroe" value="<%= heroe.nombreSuperHeroe %>" minlength="3"  required /> </label><br />
       <label>Nombre real:
-        <input type="text" name="nombreReal" value="<%= heroe.nombreReal %>" required /> </label><br />
+        <input type="text" name="nombreReal" value="<%= heroe.nombreReal %>" minlength="3" required /> </label><br />
       <label>Edad:
         <input type="number" name="edad" value="<%= heroe.edad %>" min="0" /> </label><br />
       <label>Planeta de origen:
